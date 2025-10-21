@@ -1,5 +1,5 @@
 /* Selection options are FIRST (first rows) or RANDOM (random sample) */
-%let selection=FIRST;
+%let selection=Random;
 
 /* GET TOTAL ROW COUNT FROM TABLE */
 	
@@ -9,7 +9,7 @@
 
 /* SELECT FIRST 20 ROWS */
 %if &selection=FIRST %then %do;
-	title1 color="#545B66" "Sample from SASHELP.heart";
+	title1 color="blue" "Sample from SASHELP.heart";
 	title2 height=3 "First 20 of &N Rows";
 	data sample;
 	    set sashelp.heart(obs=20);
@@ -19,7 +19,7 @@
 /* SELECT RANDOM SAMPLE OF 20 ROWS */
 
 %else %do;
-	title1 color="#545B66" "Sample from SASHELP.heart";
+	title1 color="blue" "Sample from SASHELP.heart";
 	title2 height=3 "Random Sample 20 of &N Rows";
 	
 	proc surveyselect data=sashelp.heart
