@@ -4,25 +4,25 @@
 /* GET TOTAL ROW COUNT FROM TABLE */
 	
 	proc sql noprint;
-	    select count(*) format=comma15. into :N from sashelp.homeequity;
+	    select count(*) format=comma15. into :N from sashelp.heart;
 	quit;
 
 /* SELECT FIRST 20 ROWS */
 %if &selection=FIRST %then %do;
-	title1 color="#545B66" "Sample from SASHELP.HOMEEQUITY";
+	title1 color="#545B66" "Sample from SASHELP.heart";
 	title2 height=3 "First 20 of &N Rows";
 	data sample;
-	    set sashelp.homeequity(obs=20 keep=Bad Loan MortDue Value);
+	    set sashelp.heart(obs=20);
 	run;
 %end;
 
 /* SELECT RANDOM SAMPLE OF 20 ROWS */
 
 %else %do;
-	title1 color="#545B66" "Sample from SASHELP.HOMEEQUITY";
+	title1 color="#545B66" "Sample from SASHELP.heart";
 	title2 height=3 "Random Sample 20 of &N Rows";
 	
-	proc surveyselect data=sashelp.homeequity(keep=Bad Loan MortDue Value) 
+	proc surveyselect data=sashelp.heart
 	                  method=srs n=20
 	                  out=sample noprint;
 	run;  
